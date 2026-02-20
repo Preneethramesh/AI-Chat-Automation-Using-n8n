@@ -1,0 +1,138 @@
+{
+  "name": "AI work flowe",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -192,
+        112
+      ],
+      "id": "8cd9c0f2-6551-427d-b6ea-118a0670a63e",
+      "name": "When chat message received",
+      "webhookId": "d4b4b518-6cd2-4729-ad7d-db079203876a"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        16,
+        112
+      ],
+      "id": "ab80c993-530e-4f4c-8691-32c2c5c9247e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        176,
+        320
+      ],
+      "id": "176dc9c0-e431-486c-9558-05f88d3f8d16",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        32,
+        320
+      ],
+      "id": "b9cc41f6-daf1-40df-8d7e-b077da0925f7",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        320
+      ],
+      "id": "63ea13c9-8dff-487b-9fc9-fe9afff61a4e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "T0EQhn7EiYcsQYvU",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "59580d6c-30d6-49fa-9b5e-6a108cb45e3f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4580a413479be38dd48c21e23d1e6f6d58b354d695913c04ee1ef3e3d4afd7d9"
+  },
+  "id": "5vp7rC0aQ9qQXTD8RZLgh",
+  "tags": []
+}
